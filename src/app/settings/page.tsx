@@ -1,5 +1,7 @@
 'use client';
 
+import * as React from 'react'; // Import React
+import { useState } from 'react'; // Import useState
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
