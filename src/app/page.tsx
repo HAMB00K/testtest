@@ -53,7 +53,6 @@ export default function LandingPage() {
     <div className="flex flex-col items-center min-h-screen bg-background text-foreground p-8 overflow-y-auto">
       <header className="text-center my-12 md:my-16">
         <Logo className="mx-auto mb-6" width={180} height={180} priority />
-        {/* Le texte descriptif a été retiré d'ici */}
       </header>
 
       <main className="w-full max-w-5xl text-center">
