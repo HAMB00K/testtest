@@ -10,7 +10,7 @@ interface LogoProps {
 export function Logo({ className, width, height, priority = false }: LogoProps) {
   return (
     <Image
-      src="/securibot-logo.png"
+      src="/securibot.png"
       alt="Securibot Logo"
       width={width}
       height={height}
