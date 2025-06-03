@@ -3,8 +3,9 @@
 import { useState, type FormEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Textarea } from '@/components/ui/textarea';
-import { SendHorizonal, Paperclip, Mic } from 'lucide-react';
+import { SendHorizonal, Mic } from 'lucide-react'; // Paperclip retiré, Mic ajouté
 import { cn } from '@/lib/utils';
+import { useToast } from '@/hooks/use-toast'; // Ajout de useToast
 
 interface MessageInputProps {
   onSendMessage: (messageText: string) => void;
@@ -13,6 +14,7 @@ interface MessageInputProps {
 
 export function MessageInput({ onSendMessage, isLoading }: MessageInputProps) {
   const [message, setMessage] = useState('');
+  const { toast } = useToast(); // Initialisation de useToast
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,6 +22,15 @@ export function MessageInput({ onSendMessage, isLoading }: MessageInputProps) {
       onSendMessage(message.trim());
       setMessage('');
     }
+  };
+
+  const handleMicClick = () => {
+    // Placeholder pour la fonctionnalité microphone
+    toast({
+      title: "Fonctionnalité à venir",
+      description: "L'enregistrement par microphone n'est pas encore implémenté.",
+      duration: 3000,
+    });
   };
 
   return (
@@ -31,7 +42,7 @@ export function MessageInput({ onSendMessage, isLoading }: MessageInputProps) {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="Ask Securibot about cybersecurity..."
-        className="flex-1 resize-none rounded-xl border-input bg-secondary focus-visible:ring-primary focus-visible:ring-2 min-h-[52px] max-h-[150px] overflow-y-auto pr-20"
+        className="flex-1 resize-none rounded-xl border-input bg-secondary focus-visible:ring-primary focus-visible:ring-2 min-h-[52px] max-h-[150px] overflow-y-auto pr-20" // Padding à droite conservé pour les boutons
         onKeyDown={(e) => {
           if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault();
@@ -43,25 +54,27 @@ export function MessageInput({ onSendMessage, isLoading }: MessageInputProps) {
         aria-label="Chat message input"
       />
       <div className="absolute right-6 bottom-6 md:right-8 md:bottom-8 flex items-center gap-1">
-         <Button
+        {/* Bouton Paperclip retiré */}
+        <Button // Nouveau bouton Mic
           type="button"
           size="icon"
           variant="ghost"
           className="text-muted-foreground hover:text-primary"
-          disabled={isLoading}
-          aria-label="Attach file"
+          onClick={handleMicClick}
+          aria-label="Utiliser le microphone"
+          disabled={isLoading} // Peut être activé même pendant le chargement si l'entrée micro est indépendante
         >
-          <Paperclip className="h-5 w-5" />
+          <Mic className="h-5 w-5" />
         </Button>
         <Button
           type="submit"
           size="icon"
           variant="default"
           disabled={isLoading || !message.trim()}
-          aria-label="Send message"
+          aria-label="Envoyer le message"
           className={cn(isLoading ? "bg-muted text-muted-foreground" : "bg-primary hover:bg-primary/90")}
         >
-          {isLoading ? <SendHorizonal className="h-5 w-5 animate-pulse" /> : <SendHorizonal className="h-5 w-5" />}
+          <SendHorizonal className="h-5 w-5" />
         </Button>
       </div>
     </form>

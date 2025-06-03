@@ -1,15 +1,14 @@
-// SummarizeCybersecurityArticles flow
 'use server';
 
 /**
- * @fileOverview Summarizes cybersecurity articles from given URLs.
+ * @fileOverview Summarizes cybersecurity articles from given URLs. (Now returns static summaries)
  *
  * - summarizeCybersecurityArticles - A function that summarizes cybersecurity articles from given URLs.
  * - SummarizeCybersecurityArticlesInput - The input type for the summarizeCybersecurityArticles function.
  * - SummarizeCybersecurityArticlesOutput - The return type for the summarizeCybersecurityArticles function.
  */
 
-import {ai} from '@/ai/genkit';
+import {ai}from '@/ai/genkit';
 import {z} from 'genkit';
 
 const SummarizeCybersecurityArticlesInputSchema = z.object({
@@ -36,28 +35,9 @@ export async function summarizeCybersecurityArticles(
   return summarizeCybersecurityArticlesFlow(input);
 }
 
-const articleSummaryPrompt = ai.definePrompt({
-  name: 'articleSummaryPrompt',
-  input: {schema: z.object({url: z.string().url(), content: z.string()})},
-  output: {schema: z.string().describe('A concise summary of the article.')},
-  prompt: `You are an expert cybersecurity analyst. Summarize the following article content from the URL {{{url}}} in a concise manner, focusing on the key cybersecurity aspects and potential implications.
-
-Article Content:
-{{{content}}}`,
-});
-
-async function fetchArticleContent(url: string): Promise<string> {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch article from ${url}: ${response.statusText}`);
-    }
-    return await response.text();
-  } catch (error: any) {
-    console.error(`Error fetching article from ${url}: ${error.message}`);
-    return `Failed to fetch content from ${url}. Please check the URL.`;
-  }
-}
+// Les définitions de prompt et la fonction fetchArticleContent sont supprimées.
+// const articleSummaryPrompt = ai.definePrompt({ ... });
+// async function fetchArticleContent(url: string): Promise<string> { ... }
 
 const summarizeCybersecurityArticlesFlow = ai.defineFlow(
   {
@@ -65,18 +45,11 @@ const summarizeCybersecurityArticlesFlow = ai.defineFlow(
     inputSchema: SummarizeCybersecurityArticlesInputSchema,
     outputSchema: SummarizeCybersecurityArticlesOutputSchema,
   },
-  async input => {
-    const summaries: string[] = [];
-
-    for (const url of input.urls) {
-      const content = await fetchArticleContent(url);
-      const {output} = await articleSummaryPrompt({
-        url: url,
-        content: content,
-      });
-      summaries.push(output!);
-    }
-
-    return {summaries: summaries};
+  async (input) => {
+    // Retourne des résumés statiques pour chaque URL.
+    const summaries: string[] = input.urls.map(url => 
+        `Ceci est un résumé de test statique pour l'URL : ${url}. Le contenu réel n'a pas été récupéré ni analysé par une IA.`
+    );
+    return {summaries};
   }
 );

@@ -26,12 +26,8 @@ export async function answerCybersecurityQuestion(
   return answerCybersecurityQuestionFlow(input);
 }
 
-const prompt = ai.definePrompt({
-  name: 'answerCybersecurityQuestionPrompt',
-  input: {schema: AnswerCybersecurityQuestionInputSchema},
-  output: {schema: AnswerCybersecurityQuestionOutputSchema},
-  prompt: `You are a cybersecurity expert. Please answer the following question about cybersecurity accurately and informatively:\n\nQuestion: {{{question}}}`,
-});
+// La définition du prompt est supprimée car nous retournons une réponse statique.
+// const prompt = ai.definePrompt({ ... });
 
 const answerCybersecurityQuestionFlow = ai.defineFlow(
   {
@@ -39,8 +35,8 @@ const answerCybersecurityQuestionFlow = ai.defineFlow(
     inputSchema: AnswerCybersecurityQuestionInputSchema,
     outputSchema: AnswerCybersecurityQuestionOutputSchema,
   },
-  async input => {
-    const {output} = await prompt(input);
-    return output!;
+  async (input) => {
+    // Retourne une réponse statique au lieu d'appeler le prompt.
+    return { answer: `Réponse de test à votre question : "${input.question}". Ceci est un texte statique généré localement.` };
   }
 );

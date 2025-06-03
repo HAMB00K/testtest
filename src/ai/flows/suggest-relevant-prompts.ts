@@ -1,4 +1,3 @@
-// src/ai/flows/suggest-relevant-prompts.ts
 'use server';
 
 /**
@@ -18,23 +17,8 @@ export async function suggestRelevantPrompts(): Promise<RelevantPromptsOutput> {
   return suggestRelevantPromptsFlow();
 }
 
-const prompt = ai.definePrompt({
-  name: 'suggestRelevantPromptsPrompt',
-  output: {schema: RelevantPromptsOutputSchema},
-  prompt: `You are a cybersecurity expert. Suggest a few relevant and engaging cybersecurity prompts based on current trends and common concerns. Return them as a JSON array of strings.
-
-Examples:
-[
-  "What are the latest phishing techniques and how can I identify them?",
-  "How can I protect my small business from ransomware attacks?",
-  "What are the best practices for securing my home network?",
-  "Explain the concept of zero-trust architecture.",
-  "How can I improve my password security?"
-]
-
-Make sure the prompts are diverse and cover a range of cybersecurity topics. Focus on actionable advice and informative questions.
-`,
-});
+// La définition du prompt est supprimée car nous retournons des suggestions statiques.
+// const prompt = ai.definePrompt({ ... });
 
 const suggestRelevantPromptsFlow = ai.defineFlow(
   {
@@ -42,7 +26,12 @@ const suggestRelevantPromptsFlow = ai.defineFlow(
     outputSchema: RelevantPromptsOutputSchema,
   },
   async () => {
-    const {output} = await prompt({});
-    return output!;
+    // Retourne des suggestions statiques.
+    return [
+        "Suggestion de prompt statique N°1 : Quels sont les risques ?",
+        "Suggestion statique N°2 : Comment me protéger ?",
+        "Prompt de test N°3 : Expliquez la cybersécurité.",
+        "Quatrième suggestion statique pour tester.",
+    ];
   }
 );
