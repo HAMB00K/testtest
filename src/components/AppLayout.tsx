@@ -14,7 +14,6 @@ import {
   SidebarTrigger,
   SidebarInset,
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenuSub,
   SidebarMenuSubItem,
   SidebarMenuSubButton,
@@ -25,10 +24,8 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Logo } from '@/components/Logo';
 import {
-  BotMessageSquare,
   FileText,
   History,
-  LayoutDashboard,
   MessageSquarePlus,
   Settings,
   UserCircle,
@@ -55,11 +52,8 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   return (
     <SidebarProvider defaultOpen>
       <Sidebar collapsible="icon" variant="sidebar" className="border-r">
-        <SidebarHeader className="p-4 items-center flex gap-2">
-          <Logo className="text-primary" size={32}/>
-          <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <h2 className="font-headline text-xl font-semibold text-primary">Securibot</h2>
-          </div>
+        <SidebarHeader className="p-4 items-center flex justify-center group-data-[collapsible=icon]:justify-start">
+          <Logo width={80} height={104} priority/>
         </SidebarHeader>
 
         <SidebarContent className="p-0">
@@ -92,7 +86,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                   {mockChatHistory.map((chat) => (
                     <SidebarMenuSubItem key={chat.id}>
                       <SidebarMenuSubButton
-                        href={`/chat?session=${chat.id}`} // Example, not functional yet
+                        href={`/chat?session=${chat.id}`} 
                         isActive={pathname === `/chat` && (typeof window !== 'undefined' && new URLSearchParams(window.location.search).get('session') === chat.id)}
                         className="truncate"
                         size="sm"
@@ -137,7 +131,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
                 asChild
                 tooltip={{ children: 'Logout', side: 'right', className: 'bg-destructive text-destructive-foreground' }}
               >
-                <Link href="/auth"> {/* Simulate logout by going to auth page */}
+                <Link href="/auth"> 
                   <LogOut className="text-destructive" /> <span className="group-data-[collapsible=icon]:hidden text-destructive">Logout</span>
                 </Link>
               </SidebarMenuButton>
@@ -159,8 +153,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="p-4 border-b md:hidden sticky top-0 bg-background z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Logo className="text-primary" size={28}/>
-              <h1 className="font-headline text-lg font-semibold text-primary">Securibot</h1>
+              <Logo width={50} height={65} priority/>
             </div>
             <SidebarTrigger />
           </div>

@@ -1,10 +1,21 @@
-import { ShieldCheck } from 'lucide-react';
-import type { LucideProps } from 'lucide-react';
+import Image from 'next/image';
 
-interface LogoProps extends LucideProps {
-  // Add any custom props if needed, e.g., for different logo versions
+interface LogoProps {
+  className?: string;
+  width: number;
+  height: number;
+  priority?: boolean;
 }
 
-export function Logo({ className, ...props }: LogoProps) {
-  return <ShieldCheck className={className} size={48} {...props} aria-label="Securibot Logo" />;
+export function Logo({ className, width, height, priority = false }: LogoProps) {
+  return (
+    <Image
+      src="/securibot-logo.png"
+      alt="Securibot Logo"
+      width={width}
+      height={height}
+      className={className}
+      priority={priority}
+    />
+  );
 }

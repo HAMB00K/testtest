@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Logo } from '@/components/Logo';
-import { User, LogIn, KeyRound, Mail, GithubIcon, ArrowRight } from 'lucide-react'; // Using Github as placeholder for Google icon logic
+import { User, LogIn, KeyRound, Mail, ArrowRight } from 'lucide-react'; 
 
 // Placeholder for Google Icon
 const GoogleIcon = () => (
@@ -31,8 +31,7 @@ export default function AuthenticationPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background p-4">
       <div className="mb-8 text-center">
-        <Logo className="mx-auto mb-4 text-primary" />
-        <h1 className="font-headline text-4xl font-bold text-primary">Securibot</h1>
+        <Logo className="mx-auto mb-4" width={120} height={156} priority />
         <p className="text-muted-foreground">Sign in or create an account to continue</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
