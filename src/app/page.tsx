@@ -7,7 +7,7 @@ export default function LandingPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background text-foreground p-8">
       <header className="text-center mb-12">
-        <Logo className="mx-auto mb-6" width={120} height={156} priority />
+        <Logo className="mx-auto mb-6" width={1000} height={1000} priority />
         <p className="mt-4 text-lg md:text-xl text-muted-foreground max-w-xl mx-auto">
           Your intelligent partner in navigating the complexities of cybersecurity. Ask questions, get insights, and stay secure.
         </p>

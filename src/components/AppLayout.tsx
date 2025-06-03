@@ -53,7 +53,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
     <SidebarProvider defaultOpen>
       <Sidebar collapsible="icon" variant="sidebar" className="border-r">
         <SidebarHeader className="p-4 items-center flex justify-center group-data-[collapsible=icon]:justify-start">
-          <Logo width={80} height={104} priority/>
+          <Logo width={1000} height={1000} priority/>
         </SidebarHeader>
 
         <SidebarContent className="p-0">
@@ -153,7 +153,7 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
         <header className="p-4 border-b md:hidden sticky top-0 bg-background z-10">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Logo width={50} height={65} priority/>
+              <Logo width={1000} height={1000} priority/>
             </div>
             <SidebarTrigger />
           </div>

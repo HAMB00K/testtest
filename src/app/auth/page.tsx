@@ -31,7 +31,7 @@ export default function AuthenticationPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-background p-4">
       <div className="mb-8 text-center">
-        <Logo className="mx-auto mb-4" width={120} height={156} priority />
+        <Logo className="mx-auto mb-4" width={1000} height={1000} priority />
         <p className="text-muted-foreground">Sign in or create an account to continue</p>
       </div>
       <Card className="w-full max-w-md shadow-xl">
